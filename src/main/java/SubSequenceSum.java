@@ -1,29 +1,33 @@
 import java.util.ArrayList;
 
-// print all the subsequences of an array
-//O(2 power n) 3 => 8
-public class SubSequence {
+public class SubSequenceSum {
 
     static int arrlen = 0;
+    static int sum = 1;
     static int[] array = {3, 2, 1};
 
     public static void main(String[] args) {
         arrlen = array.length;
-        printSubSeq(0, new ArrayList<>());
+        printSubSeq(0, new ArrayList<>(), 0);
         //want to use arraylist as it gets bit complicated to
         //handle array needs default size and also have default zeros
         int[] t = new int[arrlen];
     }
 
-    private static void printSubSeq(int ind, ArrayList<Integer> a) {
+    //same pattern but trick is to return boolean when given sum is found
+    private static boolean printSubSeq(int ind, ArrayList<Integer> a, int s) {
 
-        if (ind >= arrlen) {
+        if (s == sum) {
             printArray(a);
-            return;
+            return true;
         }
-        printSubSeq(ind + 1, addElement(array[ind], a));
-        printSubSeq(ind + 1, removeElement(array[ind], a));
-
+        if (ind >= arrlen)
+            return false;
+        if (printSubSeq(ind + 1, addElement(array[ind], a), s + array[ind]))
+            return true;
+        // on the right side of RT do not need to do s-array[ind] as it gives incorrect sum
+        printSubSeq(ind + 1, removeElement(array[ind], a), s);
+        return false;
     }
 
     private static void printArray(ArrayList<Integer> arr) {
