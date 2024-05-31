@@ -1,2 +1,3 @@
 rootProject.name = 'recursion'
+include 'demo_test'
 

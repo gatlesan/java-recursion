@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class SubSequenceSum {
-    static int sum = 2;
-    static int[] array = {1, 3, 1, 2, 2};
+    static int sum = 4;
+    static int[] array = {1, 1, 1, 2, 2};
 
     public static void main(String[] args) {
         printSubSeq(0, new ArrayList<>(), 0);
@@ -25,7 +25,8 @@ public class SubSequenceSum {
             return true;
         ds.remove(Integer.valueOf(array[ind]));
         s -= array[ind];
-        printSubSeq(ind + 1, ds, s);
+        if(printSubSeq(ind + 1, ds, s))
+            return true;
         return false;
     }
 

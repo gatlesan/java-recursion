@@ -16,7 +16,8 @@ public class SubSeqPrintAllUniComb {
         }
         ds.add(array[i]);
         populate(i+1, ds);
-        ds.remove(Integer.valueOf(array[i]));
+        //remove is an overloaded method which takes Object(need wrapper object for the same)
+        ds.remove(ds.indexOf(array[i]));
         populate(i+1, ds);
     }
 }
